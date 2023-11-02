@@ -12,5 +12,9 @@ export const PROMPT_COMMANDS = [
     {
         action: 'MY_BALANCE',
         message: 'Show my detailed account balance.'
+    },
+    {
+        action: 'MY_NFT',
+        message: 'Show my NFTs balance.'
     }
 ]

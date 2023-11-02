@@ -78,6 +78,24 @@ export const functionSchemas: ChatCompletionFunctions[] = [
         }
     },
     {
+        name: 'show_my_nft_balance',
+        description: 'Get NFTs Balance',
+        parameters: {
+            type: 'object',
+            description: `This function gets object that have message and data. Data which array of object. Each object contains details of NFTs balance in different network. You need to print this data array in table format. If there is no record in empty data array. Then print that "No NFTs Balance Found!" Only call this function in a separate chat message do not call it from a message with other text.`,
+            properties: {
+                // account: {
+                //     type: 'string',
+                // },
+                // chainId: {
+                //     type: 'number',
+                //     description: 'Chain ID of the EVM compatible. Default to 1 if not specified.'
+                // },
+            },
+            required: []
+        }
+    },
+    {
         name: 'get_transaction_by_hash',
         description: 'Get Transaction Info',
         parameters: {
