@@ -7,3 +7,10 @@ export const templates = [
     'Swap 0.0001 ETH to WBTC. Deposit 0.001 WBTC to Aave. Borrow 10 USDT.',
     'Deposit 0.1 ETH to Lido. Send 0.1 WETH to 0x000000'
 ];
+
+export const PROMPT_COMMANDS = [
+    {
+        action: 'MY_BALANCE',
+        message: 'Show my detailed account balance.'
+    }
+]

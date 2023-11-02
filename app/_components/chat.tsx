@@ -82,6 +82,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     chatMessages,
     functionCall
   ) => {
+    console.log("functionCall.name ", functionCall.name)
     if (functionCall.name === 'deploy_contract') {
       // You now have access to the parsed arguments here (assuming the JSON was valid)
       // If JSON is invalid, return an appropriate message to the model so that it may retry?
@@ -118,6 +119,53 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
           {
             id: nanoid(),
             name: 'deploy_contract',
+            role: role,
+            content: content,
+          }
+        ],
+        functions: functionSchemas as any
+      }
+
+      return functionResponse
+
+    }
+    if (functionCall.name === 'show_my_detailed_account_balance') {
+      // You now have access to the parsed arguments here (assuming the JSON was valid)
+      // If JSON is invalid, return an appropriate message to the model so that it may retry?
+      const args: { account: string, chainId: number } = JSON.parse(functionCall?.arguments)
+      let response: any;
+      let content: string;
+      let role: 'system' | 'function';
+      console.log({ address })
+      if (address && address.length) {
+        try {
+          response = await fetch(
+            `/api/my-account-balance?address=${address}`,
+            {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            }
+          )
+          const { message, data } = await response.json()
+          content = JSON.stringify({ message, data }) + '\n\n' + 'Here is details.'
+          role = 'function'
+        } catch (error) {
+          content = JSON.stringify({ error }) + '\n\n' + 'Try to fix the error and show the user the updated code.'
+          role = 'system'
+        }
+      } else {
+        content = "Something went wrong!!!" + '\n\n' + 'Try to fix the error and show the user the updated code.'
+        role = 'system'
+      }
+
+      const functionResponse: ChatRequest = {
+        messages: [
+          ...chatMessages,
+          {
+            id: nanoid(),
+            name: 'show_my_detailed_account_balance',
             role: role,
             content: content,
           }
