@@ -150,7 +150,11 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
             }
           )
           const { message, data } = await response.json()
-          content = JSON.stringify({ message, data }) + '\n\n' + 'Here is details.'
+          if (data && data?.length) {
+            content = JSON.stringify({ message, data }) + '\n\n' + 'Here is details.'
+          } else {
+            content = 'No account balance found!'
+          }
           role = 'function'
         } catch (error) {
           content = JSON.stringify({ error }) + '\n\n' + 'Try to fix the error and show the user the updated code.'
@@ -197,7 +201,11 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
             }
           )
           const { message, data } = await response.json()
-          content = JSON.stringify({ message, data }) + '\n\n' + 'Here is details.'
+          if (data && data?.length) {
+            content = JSON.stringify({ message, data }) + '\n\n' + 'Here is details.'
+          } else {
+            content = 'No account balance found!'
+          }
           role = 'function'
         } catch (error) {
           content = JSON.stringify({ error }) + '\n\n' + 'Try to fix the error and show the user the updated code.'
