@@ -69,8 +69,11 @@ export default function ChatOptionsSlider({ open, setOpen, setInput }: any) {
                                         </div>
                                         <div className="relative mt-6 flex-1 px-2 sm:px-2">
                                             {PROMPT_COMMANDS.map((template: any, index: number) => (
-                                                <div key={index} className='flex flex-col  px-2 py-2 m-2 rounded-md border-dashed border text-sm font-semibold'>
+                                                <div key={index} className='flex flex-col  px-2 py-2 m-2 rounded-md border-dashed border text-sm font-semibold break-all'>
                                                     <div> {template.message}</div>
+                                                    {template?.note && (
+                                                        <div className='py-1 font-normal text-xs'>Note: {template?.note}</div>
+                                                    )}
                                                     <div className='text-right px-2 py-1'>
                                                         <Button onClick={() => { console.log(template); addTemplateMessageToPropmt(template); "setTemplate(template)" }}>USE</Button>
                                                     </div>

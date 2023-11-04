@@ -96,6 +96,59 @@ export const functionSchemas: ChatCompletionFunctions[] = [
         }
     },
     {
+        name: 'show_top_nft_holder',
+        description: 'Get Top NFTs Holders',
+        parameters: {
+            type: 'object',
+            description: `This function gets object that have message and data. Data which array of object. Each object contains details of top NFTs holder in given chain name. You need to print this data array in table format. Make sure you print all. If there is no record in empty data array. Then print that "No Top NFTs H older Found!" Only call this function in a separate chat message do not call it from a message with other text.`,
+            properties: {
+                chain_name: {
+                    type: 'string',
+                    description: 'Chain name is crypto network name like mainnet. Take mainnet as default parameter. '
+                },
+                contract_address: {
+                    type: 'string',
+                    description: 'Contract address is crypto address which holds the top NFT\'s agaist a chain.'
+                },
+            },
+            required: ['chain_name', 'contract_address']
+        }
+    },
+    {
+        name: 'show_transaction_details_by_txn_hash_and_chain_name',
+        description: 'Get transaction details using transaction hash and chain name',
+        parameters: {
+            type: 'object',
+            description: `This function gets object that have message and data. Data is object. You need to print each infomation of data object. Make sure you print all. If there is no record in empty data array. Then print that "No Top NFTs H older Found!" Only call this function in a separate chat message do not call it from a message with other text.`,
+            properties: {
+                chain_name: {
+                    type: 'string',
+                    description: 'Chain name is crypto network name like mainnet. Take mainnet as default parameter. '
+                },
+                txn_hash: {
+                    type: 'string',
+                    description: 'Transaction hash is crypto address.'
+                },
+            },
+            required: ['chain_name', 'txn_hash']
+        }
+    },
+    {
+        name: 'show_tokens_by_symbol',
+        description: 'Get a list of tokens in all networks with the search symbol.',
+        parameters: {
+            type: 'object',
+            description: `This function gets object that have message and data. Data which array of object. Each object contains details of tokens. You need to print this data array in table format. Make sure you print all. If there is no record in empty data array. Then print that "No Tokens Found!" Only call this function in a separate chat message do not call it from a message with other text.`,
+            properties: {
+                token_symbol: {
+                    type: 'string',
+                    description: 'token_symbol is string for search, eg: usdc. Take usdc as default parameter. '
+                },
+            },
+            required: ['token_symbol']
+        }
+    },
+    {
         name: 'get_transaction_by_hash',
         description: 'Get Transaction Info',
         parameters: {
