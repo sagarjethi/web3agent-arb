@@ -31,5 +31,10 @@ export const PROMPT_COMMANDS = [
         action: 'TXN_INFO',
         message: 'Show me transaction details where the chain name is __CHAIN_NAME__ and the transaction hash is __TXN_HASH__',
         note: `Supported chain name are mainnet,optimism and arbitrum. Eg: Show me transaction details where the chain name is mainnet and the transaction hash is 0x48cd7f0228f198efa9792274269173d1bba7165b0e7354a06839e6bbee8ed7cb`
+    },
+    {
+        action: 'NFT_METADATA',
+        message: 'Show me NFT metadata details where the chain name is __CHAIN_NAME__, the token id is __TOKEN_ID__ and the contract address is __CONTRACT_ADDRESS__',
+        note: `Supported chain name are mainnet,optimism and arbitrum. Eg: Show me NFT metadata details where the chain name is mainnet, the token id is 3366 and the contract address is 0x8bc9224253e37cd221c7f510acc42cb6e734db57`
     }
-]
+];

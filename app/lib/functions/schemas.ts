@@ -134,6 +134,29 @@ export const functionSchemas: ChatCompletionFunctions[] = [
         }
     },
     {
+        name: 'show_nft_metadata_using_contract_address_token_id_and_chain_name',
+        description: 'Get NFT Metadata details using chain name, contract address and token_id.',
+        parameters: {
+            type: 'object',
+            description: `This function gets object that have message and data. Data is object. You need to print each infomation of data object. Make sure you print all. If there is no record in empty data array. Then print that "No NFT metadata Found!" Only call this function in a separate chat message do not call it from a message with other text.`,
+            properties: {
+                chain_name: {
+                    type: 'string',
+                    description: 'Chain name is crypto network name like mainnet. Take mainnet as default parameter. '
+                },
+                contract_address: {
+                    type: 'string',
+                    description: 'Contract Address is crypto address.'
+                },
+                token_id: {
+                    type: 'string',
+                    description: 'Token id is id of NFT.'
+                },
+            },
+            required: ['chain_name', 'contract_address', 'token_id']
+        }
+    },
+    {
         name: 'show_tokens_by_symbol',
         description: 'Get a list of tokens in all networks with the search symbol.',
         parameters: {
