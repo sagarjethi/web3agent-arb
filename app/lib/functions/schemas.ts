@@ -96,6 +96,21 @@ export const functionSchemas: ChatCompletionFunctions[] = [
         }
     },
     {
+        name: 'show_list_of_protocols_for_wallet_address',
+        description: 'Returns a list of protocols for wallet address on all networks',
+        parameters: {
+            type: 'object',
+            description: `This function gets object that have message and data. Data which array of object. Each object contains details of list of protocols for wallet address. You need to print this data array in table format. Make sure you print all. If there is no record in empty data array. Then print that "No Protocols Found!" Only call this function in a separate chat message do not call it from a message with other text.`,
+            properties: {
+                address: {
+                    type: 'string',
+                    description: 'Address is crypto wallet address.'
+                },
+            },
+            required: ['address']
+        }
+    },
+    {
         name: 'show_top_nft_holder',
         description: 'Get Top NFTs Holders',
         parameters: {

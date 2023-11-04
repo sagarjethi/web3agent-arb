@@ -36,5 +36,10 @@ export const PROMPT_COMMANDS = [
         action: 'NFT_METADATA',
         message: 'Show me NFT metadata details where the chain name is __CHAIN_NAME__, the token id is __TOKEN_ID__ and the contract address is __CONTRACT_ADDRESS__',
         note: `Supported chain name are mainnet,optimism and arbitrum. Eg: Show me NFT metadata details where the chain name is mainnet, the token id is 3366 and the contract address is 0x8bc9224253e37cd221c7f510acc42cb6e734db57`
+    },
+    {
+        action: 'PROTOCOLS',
+        message: 'Show me the list of protocols for wallet address on all networks and the wallet address is __ADDRESS__',
+        note: `Eg: Show me the list of protocols for wallet address on all networks and the wallet address is 0xb72ed8401892466ea8af528c1af1d0524bc5e105`
     }
 ];
