@@ -64,7 +64,7 @@ export const PROMPT_COMMANDS = [
     }
 ];
 
-export const DEPLOYMENT_COMMANDS = [
+export const LINEA_DEPLOYMENT_COMMANDS = [
     {
         action: 'CREATE_CONTRACT',
         message: 'Write a simple contract that stores a value.',
@@ -74,9 +74,27 @@ export const DEPLOYMENT_COMMANDS = [
         action: 'DEPLOY_LINEA_TESTNET',
         message: 'Deploy this contract on Linea Testnet.',
     },
+];
+
+export const ARBITRUM_DEPLOYMENT_COMMANDS = [
+    {
+        action: 'CREATE_CONTRACT',
+        message: 'Write a simple contract that stores a value.',
+        note: 'Once contract created, please select below chain/network to deploy contract'
+    },
+
     {
         action: 'DEPLOY_ARBITRUM_GOERLI_TESTNET',
         message: 'Deploy this contract on Arbitrum Goerli.',
+    },
+];
+
+
+export const OTHER_DEPLOYMENT_COMMANDS = [
+    {
+        action: 'CREATE_CONTRACT',
+        message: 'Write a simple contract that stores a value.',
+        note: 'Once contract created, please select below chain/network to deploy contract'
     },
     {
         action: 'DEPLOY_SCROLL_SEPOLIA_TESTNET',
@@ -90,7 +108,7 @@ export const DEPLOYMENT_COMMANDS = [
         action: 'DEPLOY_FILECOIN_TESTNET',
         message: 'Deploy this contract on Filecoin - Calibration testnet.',
     },
-]
+];
 
 export const WEB3_COMMANDS = [
     {
