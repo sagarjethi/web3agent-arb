@@ -91,3 +91,18 @@ export const DEPLOYMENT_COMMANDS = [
         message: 'Deploy this contract on Filecoin - Calibration testnet.',
     },
 ]
+
+export const WEB3_COMMANDS = [
+    {
+        action: 'BLOCK_NUMBER',
+        message: 'Give me the current block number on chain 1'
+    },
+    {
+        action: 'GAS_PRICE_ETH_CHAIN',
+        message: "Give me the gas price for chain id 1."
+    },
+    {
+        action: 'GAS_PRICE_ETH',
+        message: 'Give me the gas price of Ethereum.',
+    },
+]

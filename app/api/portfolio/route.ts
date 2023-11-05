@@ -5,7 +5,7 @@ import { convertAmountFromRawNumber, divide, multiply, add, formatFixedDecimals 
 const getTokensDetails = async (address) => {
     try {
         const response = await fetch(
-            `https://datalayer.decommas.net/datalayer/api/v1/tokens/${address}?api-key=${configs.DCOMMA_API_KEY}&limit=100`,
+            `https://datalayer.decommas.net/datalayer/api/v1/tokens/${address}?api-key=${configs.DCOMMA_API_KEY}&limit=20`,
             {
                 method: 'GET',
                 headers: {
@@ -19,16 +19,18 @@ const getTokensDetails = async (address) => {
         }
         let total: any = 0;
         result = result.map((coin: any) => {
-            const obj = {
-                chain_name: coin?.chain_name || 'NA',
-                name: coin?.name || 'NA',
-                actual_price: coin?.actual_price || 'NA',
-                amount: coin?.amount || 'NA',
-                value: coin?.actual_price ? formatFixedDecimals(multiply(convertAmountFromRawNumber(coin.amount, coin.decimals), coin.actual_price), 2) : '0'
+            if (coin?.actual_price) {
+                const obj = {
+                    chain_name: coin?.chain_name || 'NA',
+                    name: coin?.name || 'NA',
+                    actual_price: coin?.actual_price || 'NA',
+                    amount: coin?.amount || 'NA',
+                    value: coin?.actual_price ? formatFixedDecimals(multiply(convertAmountFromRawNumber(coin.amount, coin.decimals), coin.actual_price), 2) : '0'
+                }
+                total = add(total, obj.value);
+                return obj
             }
-            total = add(total, obj.value);
-            return obj
-        })
+        }).filter((item: any) => item);
         total = formatFixedDecimals(total, 2)
         return { total, result }
     } catch (error) {
