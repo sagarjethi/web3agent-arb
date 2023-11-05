@@ -13,3 +13,23 @@ code {
 li {
     color: darkmagenta !important;
 }
+table {
+    color: black !important;
+}
+thead {
+    color: black !important;
+    font-weight: 900;
+
+}
+tr {
+    color: black !important;
+}
+th{
+    color: black !important;
+}
+td{
+    color: black !important;
+}
+tbody{
+    color: black !important;
+}

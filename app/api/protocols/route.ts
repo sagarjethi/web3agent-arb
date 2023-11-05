@@ -4,14 +4,12 @@ import { configs } from "@/configs";
 export async function GET(request: Request) {
     try {
         const url = new URL(request.url);
-        const chain_name = url.searchParams.get('chain_name');
         const address = url.searchParams.get('address');
-        const token_id = url.searchParams.get('token_id');
         if (!address) {
             return NextResponse.json({ message: 'Address is required!', data: { address } }, { status: 400 });
         }
         const response = await fetch(
-            `https://datalayer.decommas.net/datalayer/api/v1/protocols/${address}?api-key=${configs.DCOMMA_API_KEY}`,
+            `https://datalayer.decommas.net/datalayer/api/v1/protocols/${address}?api-key=${configs.DCOMMA_API_KEY}&limit=100`,
             {
                 method: 'GET',
                 headers: {
