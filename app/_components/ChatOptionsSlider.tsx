@@ -3,7 +3,7 @@ import React from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition, Disclosure } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { PROMPT_COMMANDS, DEPLOYMENT_COMMANDS, WEB3_COMMANDS } from '../../constants/templates'
+import { PROMPT_COMMANDS, OTHER_DEPLOYMENT_COMMANDS, LINEA_DEPLOYMENT_COMMANDS, ARBITRUM_DEPLOYMENT_COMMANDS, WEB3_COMMANDS } from '../../constants/templates'
 import { Button } from '@mui/material'
 import { IoIosArrowDropdown, IoIosArrowDropup } from 'react-icons/io'
 
@@ -103,7 +103,7 @@ export default function ChatOptionsSlider({ open, setOpen, setInput }: any) {
                                                     {({ open }) => (
                                                         <>
                                                             <Disclosure.Button className="w-full bg-green-400 p-2 rounded-sm text-sm font-medium flex justify-between items-center">
-                                                                <div>Contract Deployment Commands</div>
+                                                                <div>Linea Testnet Contract Deployment Command</div>
                                                                 <div>
                                                                     {
                                                                         !open ? <IoIosArrowDropdown className='w-6 h-6' /> : <IoIosArrowDropup className='w-6 h-6' />
@@ -111,7 +111,65 @@ export default function ChatOptionsSlider({ open, setOpen, setInput }: any) {
 
                                                                 </div>
                                                             </Disclosure.Button><Disclosure.Panel className="">
-                                                                {DEPLOYMENT_COMMANDS.map((template: any, index: number) => (
+                                                                {LINEA_DEPLOYMENT_COMMANDS.map((template: any, index: number) => (
+                                                                    <div key={template.note} className='flex flex-col  px-2 py-2 m-2 rounded-md border-dashed border text-sm font-semibold break-all'>
+                                                                        <div> {template.message}</div>
+                                                                        {template?.note && (
+                                                                            <div className='py-1 font-normal text-xs'>Note: {template?.note}</div>
+                                                                        )}
+                                                                        <div className='text-right px-2 py-1'>
+                                                                            <Button onClick={() => { console.log(template); addTemplateMessageToPropmt(template); "setTemplate(template)" }}>USE</Button>
+                                                                        </div>
+                                                                    </div>
+                                                                ))}
+                                                            </Disclosure.Panel>
+                                                        </>)}
+                                                </Disclosure>
+
+                                            </div>
+                                            <div className="relative mt-6 flex-1 sm:px-4">
+                                                <Disclosure>
+                                                    {({ open }) => (
+                                                        <>
+                                                            <Disclosure.Button className="w-full bg-green-400 p-2 rounded-sm text-sm font-medium flex justify-between items-center">
+                                                                <div>Arbitrum Goerli Contract Deployment Command</div>
+                                                                <div>
+                                                                    {
+                                                                        !open ? <IoIosArrowDropdown className='w-6 h-6' /> : <IoIosArrowDropup className='w-6 h-6' />
+                                                                    }
+
+                                                                </div>
+                                                            </Disclosure.Button><Disclosure.Panel className="">
+                                                                {ARBITRUM_DEPLOYMENT_COMMANDS.map((template: any, index: number) => (
+                                                                    <div key={template.note} className='flex flex-col  px-2 py-2 m-2 rounded-md border-dashed border text-sm font-semibold break-all'>
+                                                                        <div> {template.message}</div>
+                                                                        {template?.note && (
+                                                                            <div className='py-1 font-normal text-xs'>Note: {template?.note}</div>
+                                                                        )}
+                                                                        <div className='text-right px-2 py-1'>
+                                                                            <Button onClick={() => { console.log(template); addTemplateMessageToPropmt(template); "setTemplate(template)" }}>USE</Button>
+                                                                        </div>
+                                                                    </div>
+                                                                ))}
+                                                            </Disclosure.Panel>
+                                                        </>)}
+                                                </Disclosure>
+
+                                            </div>
+                                            <div className="relative mt-6 flex-1 sm:px-4">
+                                                <Disclosure>
+                                                    {({ open }) => (
+                                                        <>
+                                                            <Disclosure.Button className="w-full bg-green-400 p-2 rounded-sm text-sm font-medium flex justify-between items-center">
+                                                                <div>Other Contract Deployment Commands</div>
+                                                                <div>
+                                                                    {
+                                                                        !open ? <IoIosArrowDropdown className='w-6 h-6' /> : <IoIosArrowDropup className='w-6 h-6' />
+                                                                    }
+
+                                                                </div>
+                                                            </Disclosure.Button><Disclosure.Panel className="">
+                                                                {OTHER_DEPLOYMENT_COMMANDS.map((template: any, index: number) => (
                                                                     <div key={template.note} className='flex flex-col  px-2 py-2 m-2 rounded-md border-dashed border text-sm font-semibold break-all'>
                                                                         <div> {template.message}</div>
                                                                         {template?.note && (
