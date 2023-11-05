@@ -11,7 +11,7 @@ export async function GET(request: Request) {
             return NextResponse.json({ message: 'Contract address, token id & chain name is required!', data: { chain_name, contract_address, token_id } }, { status: 400 });
         }
         const response = await fetch(
-            `https://datalayer.decommas.net/datalayer/api/v1/nft_metadata/${chain_name}/${contract_address}/${token_id}?api-key=${configs.DCOMMA_API_KEY}`,
+            `https://datalayer.decommas.net/datalayer/api/v1/nft_metadata/${chain_name}/${contract_address}/${token_id}?api-key=${configs.DCOMMA_API_KEY}&limit=100`,
             {
                 method: 'GET',
                 headers: {

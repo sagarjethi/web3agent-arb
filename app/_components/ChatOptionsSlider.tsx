@@ -1,10 +1,11 @@
 "use client"
 import React from 'react'
 import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog, Transition, Disclosure } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { PROMPT_COMMANDS, templates } from '../../constants/templates'
+import { PROMPT_COMMANDS, DEPLOYMENT_COMMANDS, templates } from '../../constants/templates'
 import { Button } from '@mui/material'
+import { IoIosArrowDropdown, IoIosArrowDropup } from 'react-icons/io'
 
 export default function ChatOptionsSlider({ open, setOpen, setInput }: any) {
     // const [open, setOpen] = useState(true)
@@ -67,19 +68,67 @@ export default function ChatOptionsSlider({ open, setOpen, setInput }: any) {
                                                 Choose Your Command
                                             </Dialog.Title>
                                         </div>
-                                        <div className="relative mt-6 flex-1 px-2 sm:px-2">
-                                            {PROMPT_COMMANDS.map((template: any, index: number) => (
-                                                <div key={index} className='flex flex-col  px-2 py-2 m-2 rounded-md border-dashed border text-sm font-semibold break-all'>
-                                                    <div> {template.message}</div>
-                                                    {template?.note && (
-                                                        <div className='py-1 font-normal text-xs'>Note: {template?.note}</div>
-                                                    )}
-                                                    <div className='text-right px-2 py-1'>
-                                                        <Button onClick={() => { console.log(template); addTemplateMessageToPropmt(template); "setTemplate(template)" }}>USE</Button>
-                                                    </div>
-                                                </div>
-                                            ))}
+                                        <div>
+                                            <div className="relative mt-6 flex-1 sm:px-4">
+                                                <Disclosure>
+                                                    {({ open }) => (
+                                                        <>
+                                                            <Disclosure.Button className="w-full bg-green-400 p-2 rounded-sm text-sm font-medium flex justify-between items-center">
+                                                                <div>Portfolio Commands </div>
+                                                                <div>
+                                                                    {
+                                                                        !open ? <IoIosArrowDropdown className='w-6 h-6' /> : <IoIosArrowDropup className='w-6 h-6' />
+                                                                    }
+
+                                                                </div>
+                                                            </Disclosure.Button><Disclosure.Panel className="">
+                                                                {PROMPT_COMMANDS.map((template: any, index: number) => (
+                                                                    <div key={template.note} className='flex flex-col  px-2 py-2 m-2 rounded-md border-dashed border text-sm font-semibold break-all'>
+                                                                        <div> {template.message}</div>
+                                                                        {template?.note && (
+                                                                            <div className='py-1 font-normal text-xs'>Note: {template?.note}</div>
+                                                                        )}
+                                                                        <div className='text-right px-2 py-1'>
+                                                                            <Button onClick={() => { console.log(template); addTemplateMessageToPropmt(template); "setTemplate(template)" }}>USE</Button>
+                                                                        </div>
+                                                                    </div>
+                                                                ))}
+                                                            </Disclosure.Panel>
+                                                        </>)}
+                                                </Disclosure>
+
+                                            </div>
+                                            <div className="relative mt-6 flex-1 sm:px-4">
+                                                <Disclosure>
+                                                    {({ open }) => (
+                                                        <>
+                                                            <Disclosure.Button className="w-full bg-green-400 p-2 rounded-sm text-sm font-medium flex justify-between items-center">
+                                                                <div>Contract Deployment</div>
+                                                                <div>
+                                                                    {
+                                                                        !open ? <IoIosArrowDropdown className='w-6 h-6' /> : <IoIosArrowDropup className='w-6 h-6' />
+                                                                    }
+
+                                                                </div>
+                                                            </Disclosure.Button><Disclosure.Panel className="">
+                                                                {DEPLOYMENT_COMMANDS.map((template: any, index: number) => (
+                                                                    <div key={template.note} className='flex flex-col  px-2 py-2 m-2 rounded-md border-dashed border text-sm font-semibold break-all'>
+                                                                        <div> {template.message}</div>
+                                                                        {template?.note && (
+                                                                            <div className='py-1 font-normal text-xs'>Note: {template?.note}</div>
+                                                                        )}
+                                                                        <div className='text-right px-2 py-1'>
+                                                                            <Button onClick={() => { console.log(template); addTemplateMessageToPropmt(template); "setTemplate(template)" }}>USE</Button>
+                                                                        </div>
+                                                                    </div>
+                                                                ))}
+                                                            </Disclosure.Panel>
+                                                        </>)}
+                                                </Disclosure>
+
+                                            </div>
                                         </div>
+
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
